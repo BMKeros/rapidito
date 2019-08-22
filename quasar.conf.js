@@ -41,12 +41,16 @@ module.exports = function (ctx) {
         'QItem',
         'QItemSection',
         'QItemLabel',
+        'QInput',
+        'QTabs',
+        'QRouteTab',
+        'QFooter',
       ],
 
       directives: ['Ripple'],
 
       // Quasar plugins
-      plugins: ['Notify'],
+      plugins: ['Notify', 'Loading'],
     },
 
     supportIE: false,
