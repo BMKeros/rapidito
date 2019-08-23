@@ -2,7 +2,7 @@
   "name": "rapidito",
   "version": "0.0.1",
   "description": "Rapidito",
-  "productName": "Quasar App",
+  "productName": "Rapidito App",
   "cordovaId": "org.cordova.quasar.app",
   "author": "Israel Lugo <hostelixisrael@gmail.com>",
   "private": true,

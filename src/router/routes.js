@@ -1,8 +1,24 @@
+import firebase from 'firebase';
+
+const ifAuthenticated = (to, from, next) => {
+  const user = firebase.auth().currentUser;
+  if (user) {
+    next();
+    return;
+  }
+  next('/');
+};
+
 const routes = [
   {
     path: '/',
-    component: () => import('layouts/MyLayout.vue'),
-    children: [{ path: '', component: () => import('pages/Index.vue') }],
+    redirect: '/auth/login',
+  },
+  {
+    path: '/dashboard',
+    beforeEnter: ifAuthenticated,
+    component: () => import('layouts/IndexLayout.vue'),
+    children: [{ path: '', component: () => import('pages/DashboardPage.vue') }],
   },
   {
     path: '/auth',

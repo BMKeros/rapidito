@@ -6,6 +6,9 @@ const googleProvider = new firebase.auth.GoogleAuthProvider();
 export async function signInWithGoogle() {
   try {
     const response = await firebase.auth().signInWithPopup(googleProvider);
+
+    this.$router.replace('/dashboard');
+
     console.log(response);
   } catch (error) {
     console.log(error);
@@ -23,7 +26,7 @@ export async function signInWithCredentials({ dispatch }, credentials) {
     const { user } = response;
 
     if (user.emailVerified) {
-      this.$router.push('/');
+      this.$router.push('/dashbaord');
     } else {
       dispatch('signOut');
 
@@ -45,6 +48,7 @@ export async function signUp(_, data) {
       .auth()
       .createUserWithEmailAndPassword(data.email, data.password);
 
+    // TODO: Migrar a una cloud functions
     await response.user.sendEmailVerification();
 
     Notify.create('User register success');
@@ -60,6 +64,7 @@ export async function signUp(_, data) {
 export async function signOut() {
   try {
     await firebase.auth().signOut();
+    this.$router.replace('/');
   } catch (error) {
     console.log(error);
   }
