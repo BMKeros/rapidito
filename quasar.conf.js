@@ -51,6 +51,7 @@ module.exports = function (ctx) {
         'QSeparator',
         'QSpace',
         'QToggle',
+        'QSelect',
       ],
 
       directives: ['Ripple'],
