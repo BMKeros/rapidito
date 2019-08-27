@@ -11,6 +11,7 @@
           dense
           icon="menu"
           @click="leftDrawer = !leftDrawer"
+          v-if="isAuthenticated"
         />
         <q-toolbar-title>
           Rapidito App
@@ -68,10 +69,30 @@
       side="left"
       bordered
       content-class="bg-grey-2"
+      v-if="isAuthenticated"
     >
-      <!-- QScrollArea is optional -->
-      <q-scroll-area class="fit q-pa-sm">
-        <!-- Content here -->
+      <q-scroll-area class="fit">
+        <q-list
+          v-for="(menuItem, index) in menuList"
+          :key="index"
+        >
+
+          <q-item
+            clickable
+            :active="menuItem.label === 'Outbox'"
+            v-ripple
+          >
+            <q-item-section avatar>
+              <q-icon :name="menuItem.icon" />
+            </q-item-section>
+            <q-item-section>
+              {{ menuItem.label }}
+            </q-item-section>
+          </q-item>
+
+          <q-separator v-if="menuItem.separator" />
+
+        </q-list>
       </q-scroll-area>
     </q-drawer>
 
@@ -92,6 +113,44 @@ export default {
       leftDrawer: true,
       mobileData: true,
       bluetooth: false,
+      menuList: [
+        {
+          icon: 'inbox',
+          label: 'Inbox',
+          separator: true,
+        },
+        {
+          icon: 'send',
+          label: 'Outbox',
+          separator: false,
+        },
+        {
+          icon: 'delete',
+          label: 'Trash',
+          separator: false,
+        },
+        {
+          icon: 'error',
+          label: 'Spam',
+          separator: true,
+        },
+        {
+          icon: 'settings',
+          label: 'Settings',
+          separator: false,
+        },
+        {
+          icon: 'feedback',
+          label: 'Send Feedback',
+          separator: false,
+        },
+        {
+          icon: 'help',
+          iconColor: 'primary',
+          label: 'Help',
+          separator: false,
+        },
+      ],
     };
   },
   methods: {
