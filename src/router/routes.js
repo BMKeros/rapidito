@@ -18,7 +18,10 @@ const routes = [
     path: '/dashboard',
     beforeEnter: ifAuthenticated,
     component: () => import('layouts/IndexLayout.vue'),
-    children: [{ path: '', component: () => import('pages/DashboardPage.vue') }],
+    children: [
+      { path: '', component: () => import('pages/DashboardPage.vue') },
+      { path: 'profile', component: () => import('pages/ProfilePage.vue') },
+    ],
   },
   {
     path: '/auth',

@@ -81,6 +81,7 @@
             clickable
             :active="menuItem.label === 'Outbox'"
             v-ripple
+            :to="menuItem.to"
           >
             <q-item-section avatar>
               <q-icon :name="menuItem.icon" />
@@ -116,39 +117,9 @@ export default {
       menuList: [
         {
           icon: 'inbox',
-          label: 'Inbox',
+          label: 'Perfil',
           separator: true,
-        },
-        {
-          icon: 'send',
-          label: 'Outbox',
-          separator: false,
-        },
-        {
-          icon: 'delete',
-          label: 'Trash',
-          separator: false,
-        },
-        {
-          icon: 'error',
-          label: 'Spam',
-          separator: true,
-        },
-        {
-          icon: 'settings',
-          label: 'Settings',
-          separator: false,
-        },
-        {
-          icon: 'feedback',
-          label: 'Send Feedback',
-          separator: false,
-        },
-        {
-          icon: 'help',
-          iconColor: 'primary',
-          label: 'Help',
-          separator: false,
+          to: '/dashboard/profile',
         },
       ],
     };
